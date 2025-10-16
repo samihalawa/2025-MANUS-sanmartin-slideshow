@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #f8fafc;
+            padding: 20px 60px;
+        }
+        .header {
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .module-badge {
+            display: inline-block;
+            background: #1e3a8a;
+            color: white;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 38px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 6px;
+        }
+        .ai-badge {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            padding: 6px 18px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .description-section {
+            background: white;
+            padding: 15px 25px;
+            margin-bottom: 12px;
+            border-left: 6px solid #1e3a8a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .description-text {
+            font-size: 17px;
+            color: #334155;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .features-inline {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .feature-badge {
+            background: #f1f5f9;
+            padding: 7px 14px;
+            border-left: 3px solid #64748b;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        .mockup-section {
+            width: 100%;
+        }
+        .mockup-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .mockup-container {
+            width: 100%;
+            height: 420px;
+            background: white;
+            border: 4px solid #1e3a8a;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .mockup-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <div class="module-badge">Módulo III</div>
+            <div class="title">AutoRecruit AI</div>
+            <div class="ai-badge">Inteligencia Artificial</div>
+        </div>
+        
+        <div class="description-section">
+            <div class="description-text">
+                Motor de reclutamiento que utiliza inteligencia artificial para buscar candidatos mediante lenguaje natural, escanear LinkedIn, analizar perfiles y automatizar el contacto inicial, reduciendo el tiempo de búsqueda de talento en 80%.
+            </div>
+            
+            <div class="features-inline">
+                <div class="feature-badge">Búsqueda por lenguaje natural</div>
+                <div class="feature-badge">Escaneo automatizado de LinkedIn</div>
+                <div class="feature-badge">Análisis inteligente de perfiles</div>
+                <div class="feature-badge">Contacto automatizado con candidatos</div>
+            </div>
+        </div>
+        
+        <div class="mockup-section">
+            <div class="mockup-label">Vista del Motor de Reclutamiento IA</div>
+            <div class="mockup-container">
+                <iframe src="/home/ubuntu/hr-platform-presentation/mockups/autorecruit-ai.html"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

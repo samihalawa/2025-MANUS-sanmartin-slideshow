@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #f8fafc;
+            padding: 25px 60px;
+        }
+        .header {
+            margin-bottom: 15px;
+        }
+        .module-badge {
+            display: inline-block;
+            background: #1e3a8a;
+            color: white;
+            padding: 6px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 38px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #64748b;
+        }
+        .description-section {
+            background: white;
+            padding: 18px 25px;
+            margin-bottom: 15px;
+            border-left: 6px solid #1e3a8a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .description-text {
+            font-size: 17px;
+            color: #334155;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .features-inline {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .feature-badge {
+            background: #f1f5f9;
+            padding: 8px 15px;
+            border-left: 3px solid #64748b;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        .feature-badge.highlight {
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+        }
+        .mockup-section {
+            width: 100%;
+        }
+        .mockup-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .mockup-container {
+            width: 100%;
+            height: 480px;
+            background: white;
+            border: 4px solid #1e3a8a;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .mockup-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <div class="module-badge">Módulo I</div>
+            <div class="title">HR AutoManagement</div>
+            <div class="subtitle">Automatización de Partes de Trabajo y Nóminas</div>
+        </div>
+        
+        <div class="description-section">
+            <div class="description-text">
+                Sistema que convierte automáticamente los fichajes de empleados en archivos listos para procesamiento de nóminas, aplicando reglas laborales complejas (almuerzo, horas extras, viernes especiales) y detectando excepciones.
+            </div>
+            
+            <div class="features-inline">
+                <div class="feature-badge">Ingesta automática de fichajes</div>
+                <div class="feature-badge">Aplicación de reglas laborales</div>
+                <div class="feature-badge">Detección de excepciones</div>
+                <div class="feature-badge">Procesamiento automatizado</div>
+                <div class="feature-badge highlight">Sistema de cumpleaños automatizado</div>
+            </div>
+        </div>
+        
+        <div class="mockup-section">
+            <div class="mockup-label">Vista del Dashboard de Gestión</div>
+            <div class="mockup-container">
+                <iframe src="/home/ubuntu/hr-platform-presentation/mockups/hr-automanagement.html"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

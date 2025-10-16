@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #f8fafc;
+            padding: 20px 60px;
+        }
+        .header {
+            margin-bottom: 12px;
+        }
+        .module-badge {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #64748b;
+        }
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .stat-box {
+            background: white;
+            padding: 12px;
+            text-align: center;
+            border: 3px solid #e2e8f0;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1e3a8a;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+        .training-module {
+            background: white;
+            padding: 15px;
+            border-left: 4px solid #1e3a8a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .training-module.mod1 { border-left-color: #6366f1; }
+        .training-module.mod2 { border-left-color: #f59e0b; }
+        .training-module.mod3 { border-left-color: #10b981; }
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .module-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1e3a8a;
+        }
+        .module-hours {
+            font-size: 20px;
+            font-weight: 900;
+            color: #1e3a8a;
+        }
+        .module-content {
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.4;
+        }
+        .module-content ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+        .module-content li {
+            margin-bottom: 4px;
+        }
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+        .methodology-box {
+            background: white;
+            padding: 15px;
+            border-left: 4px solid #1e3a8a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .methodology-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .methodology-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: #334155;
+            padding: 6px;
+            background: #f1f5f9;
+        }
+        .methodology-marker {
+            min-width: 5px;
+            height: 5px;
+            background: #1e3a8a;
+            border-radius: 50%;
+            margin-top: 6px;
+        }
+        .price-box {
+            background: #1e3a8a;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 3px solid #1e3a8a;
+        }
+        .price-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .price-value {
+            font-size: 44px;
+            font-weight: 900;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <div class="module-badge">Módulo IV</div>
+            <div class="title">Formación en IA y Automatización</div>
+            <div class="subtitle">Programa Presencial de 30 Horas en Madrid</div>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-value">30h</div>
+                <div class="stat-label">Formación Presencial</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Módulos Especializados</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Días Intensivos</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">80%</div>
+                <div class="stat-label">Práctica / 20% Teoría</div>
+            </div>
+        </div>
+        
+        <div class="modules-grid">
+            <div class="training-module mod1">
+                <div class="module-header">
+                    <div class="module-name">IA en Excel</div>
+                    <div class="module-hours">12h</div>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Introducción a IA en Excel (2h)</li>
+                        <li>Power Query con IA (3h)</li>
+                        <li>Análisis Predictivo (3h)</li>
+                        <li>Automatización de Reportes (2h)</li>
+                        <li>ChatGPT + Excel (2h)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="training-module mod2">
+                <div class="module-header">
+                    <div class="module-name">Automatización de Procesos</div>
+                    <div class="module-hours">12h</div>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Fundamentos de Automatización (2h)</li>
+                        <li>Power Automate Básico (3h)</li>
+                        <li>Automatización en RRHH (3h)</li>
+                        <li>Integración de Sistemas (2h)</li>
+                        <li>RPA Conceptos (2h)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="training-module mod3">
+                <div class="module-header">
+                    <div class="module-name">Gestión de Proyectos</div>
+                    <div class="module-hours">6h</div>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Identificación de Oportunidades (1.5h)</li>
+                        <li>Especificación de Requerimientos (2h)</li>
+                        <li>Selección de Proveedores (1h)</li>
+                        <li>Gestión de Implementación (1.5h)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-section">
+            <div class="methodology-box">
+                <div class="methodology-title">Metodología y Logística</div>
+                <div class="methodology-grid">
+                    <div class="methodology-item">
+                        <span class="methodology-marker"></span>
+                        <span>Ubicación: Oficinas CSM, Calle Orense 11, Madrid</span>
+                    </div>
+                    <div class="methodology-item">
+                        <span class="methodology-marker"></span>
+                        <span>Formato: 5 días intensivos de 6 horas/día</span>
+                    </div>
+                    <div class="methodology-item">
+                        <span class="methodology-marker"></span>
+                        <span>Casos prácticos basados en procesos reales de RRHH</span>
+                    </div>
+                    <div class="methodology-item">
+                        <span class="methodology-marker"></span>
+                        <span>Manual completo, plantillas Excel con IA, licencias</span>
+                    </div>
+                    <div class="methodology-item">
+                        <span class="methodology-marker"></span>
+                        <span>Certificado de finalización con competencias</span>
+                    </div>
+                    <div class="methodology-item">
+                        <span class="methodology-marker"></span>
+                        <span>30 días de soporte técnico post-formación</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="price-box">
+                <div class="price-label">Inversión</div>
+                <div class="price-value">7.000 €</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

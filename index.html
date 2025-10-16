@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suite San Martín AI - Propuesta de Transformación Digital HR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            font-size: 24px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        .slide-card {
+            background: white;
+            border: 3px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+        .slide-card:hover {
+            transform: translateY(-5px);
+            border-color: #1e3a8a;
+        }
+        .slide-preview {
+            width: 100%;
+            height: 250px;
+            border: none;
+            pointer-events: none;
+        }
+        .slide-info {
+            padding: 20px;
+        }
+        .slide-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .slide-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Suite "San Martín AI"</h1>
+            <div class="subtitle">Transformación Digital de Recursos Humanos</div>
+        </div>
+        
+        <div class="slides-grid">
+            <div class="slide-card" onclick="window.open('portada.html', '_blank')">
+                <iframe class="slide-preview" src="portada.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 1</div>
+                    <div class="slide-title">Portada</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('resumen_ejecutivo.html', '_blank')">
+                <iframe class="slide-preview" src="resumen_ejecutivo.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 2</div>
+                    <div class="slide-title">Resumen Ejecutivo</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('suite_unificada.html', '_blank')">
+                <iframe class="slide-preview" src="suite_unificada.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 3</div>
+                    <div class="slide-title">Suite Unificada</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('modulo_automanagement.html', '_blank')">
+                <iframe class="slide-preview" src="modulo_automanagement.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 4</div>
+                    <div class="slide-title">Módulo I: HR AutoManagement</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('modulo_empleados.html', '_blank')">
+                <iframe class="slide-preview" src="modulo_empleados.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 5</div>
+                    <div class="slide-title">Módulo II: Employees Platform</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('modulo_autorecruit.html', '_blank')">
+                <iframe class="slide-preview" src="modulo_autorecruit.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 6</div>
+                    <div class="slide-title">Módulo III: AutoRecruit AI</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('modulo_formacion_ia.html', '_blank')">
+                <iframe class="slide-preview" src="modulo_formacion_ia.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 7</div>
+                    <div class="slide-title">Módulo IV: Formación en IA</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('inversion_formacion.html', '_blank')">
+                <iframe class="slide-preview" src="inversion_formacion.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 8</div>
+                    <div class="slide-title">Estructura de Inversión</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('plan_implementacion.html', '_blank')">
+                <iframe class="slide-preview" src="plan_implementacion.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 9</div>
+                    <div class="slide-title">Plan de Implementación</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('roi_valor.html', '_blank')">
+                <iframe class="slide-preview" src="roi_valor.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 10</div>
+                    <div class="slide-title">Retorno de la Inversión</div>
+                </div>
+            </div>
+            
+            <div class="slide-card" onclick="window.open('contacto_garantias.html', '_blank')">
+                <iframe class="slide-preview" src="contacto_garantias.html"></iframe>
+                <div class="slide-info">
+                    <div class="slide-number">Diapositiva 11</div>
+                    <div class="slide-title">Garantías y Condiciones</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Propuesta presentada a Construcciones San Martín S.A. • Agents AI Limited</p>
+        </div>
+    </div>
+</body>
+</html>

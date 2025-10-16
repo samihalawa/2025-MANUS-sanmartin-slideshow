@@ -1,0 +1,103 @@
+{
+  "project_info": {
+    "title": "Portada",
+    "created": 1760616393.0042899,
+    "last_updated": 1760628169.8572779,
+    "total_slides": 11
+  },
+  "slides": {
+    "portada": "edited",
+    "resumen_ejecutivo": "edited",
+    "suite_unificada": "edited",
+    "modulo_automanagement": "edited",
+    "modulo_empleados": "edited",
+    "modulo_autorecruit": "edited",
+    "modulo_formacion_ia": "edited",
+    "inversion_formacion": "edited",
+    "plan_implementacion": "edited",
+    "formacion_soporte": "deleted",
+    "roi_valor": "edited",
+    "proximos_pasos": "deleted",
+    "modulo_engagement": "deleted",
+    "contacto_garantias": "edited"
+  },
+  "outline": [
+    {
+      "id": "portada",
+      "title": "Portada",
+      "summary": "Portada principal de la presentación con el título de la propuesta y la información del proyecto.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "resumen_ejecutivo",
+      "title": "Resumen Ejecutivo",
+      "summary": "Resumen ejecutivo que presenta el problema, la solución, los beneficios clave, la inversión total y el ROI proyectado.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "suite_unificada",
+      "title": "La Suite San Martín AI: Una Plataforma Unificada",
+      "summary": "Descripción general de la suite como una plataforma integral con sus cuatro módulos principales.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "modulo_automanagement",
+      "title": "Módulo 2: Gestión Automática de RRHH",
+      "summary": "Presentación del módulo de automatización de partes de trabajo y nóminas con mockup del dashboard de gestión.",
+      "image_plan": "Mockup HTML de gestión automática ubicado en /home/ubuntu/hr-platform-presentation/mockups/hr-automanagement.html",
+      "slide_template_key": ""
+    },
+    {
+      "id": "modulo_empleados",
+      "title": "Módulo 1: Plataforma de Empleados",
+      "summary": "Presentación del módulo de Portal de Autoservicio Centralizado con sus funcionalidades clave y mockup del dashboard.",
+      "image_plan": "Mockup HTML del portal de empleados ubicado en /home/ubuntu/hr-platform-presentation/mockups/employee-platform.html",
+      "slide_template_key": ""
+    },
+    {
+      "id": "modulo_autorecruit",
+      "title": "Módulo 3: AutoRecruit AI",
+      "summary": "Presentación del motor de adquisición de talento con IA, mostrando el mockup del sistema de reclutamiento inteligente.",
+      "image_plan": "Mockup HTML de AutoRecruit AI ubicado en /home/ubuntu/hr-platform-presentation/mockups/autorecruit-ai.html",
+      "slide_template_key": ""
+    },
+    {
+      "id": "modulo_formacion_ia",
+      "title": "Módulo IV: Formación en IA y Automatización",
+      "summary": "Programa de capacitación presencial de 30 horas en Madrid enfocado en automatización de procesos, aplicación de IA en Excel, y conceptos fundamentales para articular necesidades de automatización.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "inversion_formacion",
+      "title": "Inversión y Formación",
+      "summary": "Detalle de la inversión total unificada, precios de módulos individuales, y las 10 horas de formación incluidas en Madrid.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "plan_implementacion",
+      "title": "Plan de Implementación",
+      "summary": "Timeline estructurado del proyecto con 5 fases principales desde análisis hasta soporte continuo, con duración total de 11 semanas más soporte anual.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "roi_valor",
+      "title": "Retorno de la Inversión y Justificación de Valor",
+      "summary": "Tabla comparativa de costos y ahorros anuales proyectados, demostrando el valor financiero de la inversión.",
+      "image_plan": "",
+      "slide_template_key": ""
+    },
+    {
+      "id": "contacto_garantias",
+      "title": "Información de Contacto y Garantías",
+      "summary": "Información de contacto de Agents AI Limited y garantías incluidas: reembolso completo, 12 meses de soporte continuo, y precio prioritario para nuevas implementaciones.",
+      "image_plan": "",
+      "slide_template_key": ""
+    }
+  ]
+}

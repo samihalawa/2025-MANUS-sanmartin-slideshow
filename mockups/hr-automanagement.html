@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión Automática de RRHH - AutoManagement</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --light: #f1f5f9;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .top-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .notification-badge {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 40px 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-left: 5px solid transparent;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card.blue { border-left-color: var(--secondary); }
+        .stat-card.green { border-left-color: var(--success); }
+        .stat-card.orange { border-left-color: var(--warning); }
+        .stat-card.red { border-left-color: var(--danger); }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .stat-title {
+            font-size: 0.95rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .icon-blue { background: #dbeafe; }
+        .icon-green { background: #d1fae5; }
+        .icon-orange { background: #fed7aa; }
+        .icon-red { background: #fee2e2; }
+        
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .change-positive {
+            color: var(--success);
+        }
+        
+        .change-neutral {
+            color: var(--secondary);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: var(--light);
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tbody tr {
+            transition: all 0.2s;
+        }
+        
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+        
+        .employee-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .employee-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .employee-details h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        
+        .employee-details p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-warning {
+            background: #fed7aa;
+            color: #92400e;
+        }
+        
+        .status-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        
+        .btn-view {
+            background: #dbeafe;
+            color: var(--secondary);
+        }
+        
+        .btn-view:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-edit {
+            background: #d1fae5;
+            color: var(--success);
+        }
+        
+        .btn-edit:hover {
+            background: var(--success);
+            color: white;
+        }
+        
+        .progress-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .progress-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .progress-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="logo">San Martín <span>HR AI</span></div>
+            <div class="top-actions">
+                <div class="notification-badge">
+                    🔔
+                    <span class="badge">3</span>
+                </div>
+                <div style="font-weight: 600;">Miguel Sarrasín</div>
+            </div>
+        </div>
+        
+        <div class="header">
+            <h1>⚙️ Gestión Automática de RRHH</h1>
+            <p>Panel de control centralizado para automatización de nóminas y gestión de personal</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-header">
+                        <div class="stat-title">Empleados Activos</div>
+                        <div class="stat-icon icon-blue">👥</div>
+                    </div>
+                    <div class="stat-value">157</div>
+                    <div class="stat-change change-positive">
+                        <span>↗️</span>
+                        <span>+3 este mes</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card green">
+                    <div class="stat-header">
+                        <div class="stat-title">Nóminas Procesadas</div>
+                        <div class="stat-icon icon-green">💰</div>
+                    </div>
+                    <div class="stat-value">100%</div>
+                    <div class="stat-change change-positive">
+                        <span>✅</span>
+                        <span>Automatizado completamente</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card orange">
+                    <div class="stat-header">
+                        <div class="stat-title">Horas Ahorradas</div>
+                        <div class="stat-icon icon-orange">⏱️</div>
+                    </div>
+                    <div class="stat-value">160h</div>
+                    <div class="stat-change change-neutral">
+                        <span>📊</span>
+                        <span>Este mes</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card red">
+                    <div class="stat-header">
+                        <div class="stat-title">Alertas Pendientes</div>
+                        <div class="stat-icon icon-red">⚠️</div>
+                    </div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-change" style="color: var(--danger);">
+                        <span>🔴</span>
+                        <span>Requieren atención</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">📋 Procesamiento de Partes de Trabajo</h2>
+                    <button class="btn btn-primary">⚡ Procesar Nuevo Lote</button>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <div class="progress-title">Fichajes Importados</div>
+                            <div class="progress-percentage">100%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <div class="progress-title">Reglas Aplicadas</div>
+                            <div class="progress-percentage">100%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <div class="progress-title">Validación Completa</div>
+                            <div class="progress-percentage">98%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 98%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">👨‍💼 Gestión de Empleados</h2>
+                    <button class="btn btn-primary">+ Añadir Empleado</button>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Departamento</th>
+                                <th>Horas Este Mes</th>
+                                <th>Estado Nómina</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <div class="employee-avatar">JG</div>
+                                        <div class="employee-details">
+                                            <h4>Juan García Martínez</h4>
+                                            <p>MAT-001 • Contratado desde 2018</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>Producción</strong></td>
+                                <td><strong>168h</strong></td>
+                                <td><span class="status-badge status-success">✅ Procesada</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-view">👁️</button>
+                                        <button class="btn-icon btn-edit">✏️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <div class="employee-avatar">ML</div>
+                                        <div class="employee-details">
+                                            <h4>María López Sánchez</h4>
+                                            <p>MAT-002 • Contratada desde 2019</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>Administración</strong></td>
+                                <td><strong>160h</strong></td>
+                                <td><span class="status-badge status-success">✅ Procesada</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-view">👁️</button>
+                                        <button class="btn-icon btn-edit">✏️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <div class="employee-avatar">PR</div>
+                                        <div class="employee-details">
+                                            <h4>Pedro Rodríguez Díaz</h4>
+                                            <p>MAT-003 • Contratado desde 2020</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>Logística</strong></td>
+                                <td><strong>172h</strong></td>
+                                <td><span class="status-badge status-success">✅ Procesada</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-view">👁️</button>
+                                        <button class="btn-icon btn-edit">✏️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <div class="employee-avatar">AF</div>
+                                        <div class="employee-details">
+                                            <h4>Ana Fernández Torres</h4>
+                                            <p>MAT-004 • Contratada desde 2021</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>Producción</strong></td>
+                                <td><strong>165h</strong></td>
+                                <td><span class="status-badge status-warning">⏳ Pendiente</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-view">👁️</button>
+                                        <button class="btn-icon btn-edit">✏️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <div class="employee-avatar">CM</div>
+                                        <div class="employee-details">
+                                            <h4>Carlos Martín Ruiz</h4>
+                                            <p>MAT-005 • Contratado desde 2022</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>Mantenimiento</strong></td>
+                                <td><strong>158h</strong></td>
+                                <td><span class="status-badge status-danger">⚠️ Fichaje Incompleto</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-view">👁️</button>
+                                        <button class="btn-icon btn-edit">✏️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

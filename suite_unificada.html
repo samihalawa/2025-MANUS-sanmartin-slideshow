@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: #f8fafc;
+            padding: 25px 60px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 24px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .module-item {
+            background: white;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            border: 3px solid #e2e8f0;
+        }
+        .module-number {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #1e3a8a;
+        }
+        .module-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .module-description {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.5;
+        }
+        .bottom-banner {
+            background: #1e3a8a;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+        .banner-features {
+            display: flex;
+            gap: 40px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .feature-marker {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <div class="title">Suite San Martín AI: Plataforma Unificada</div>
+            <div class="subtitle">Solución integral con capacitación en IA y automatización</div>
+        </div>
+        
+        <div class="modules-grid">
+            <div class="module-item">
+                <div class="module-number">Módulo I</div>
+                <div class="module-title">HR AutoManagement</div>
+                <div class="module-description">
+                    Automatización de partes de trabajo, procesamiento de nóminas y comunicaciones programadas
+                </div>
+            </div>
+            
+            <div class="module-item">
+                <div class="module-number">Módulo II</div>
+                <div class="module-title">Employees Platform</div>
+                <div class="module-description">
+                    Portal de autoservicio para gestión de vacaciones, ausencias y documentación personal
+                </div>
+            </div>
+            
+            <div class="module-item">
+                <div class="module-number">Módulo III</div>
+                <div class="module-title">AutoRecruit AI</div>
+                <div class="module-description">
+                    Motor de adquisición de talento con búsqueda inteligente y contacto automatizado
+                </div>
+            </div>
+            
+            <div class="module-item">
+                <div class="module-number">Módulo IV</div>
+                <div class="module-title">Formación en IA y Automatización</div>
+                <div class="module-description">
+                    Programa presencial de 30 horas en Madrid sobre automatización de procesos e IA aplicada
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-banner">
+            <div class="banner-text">Plataforma integral con capacitación para transformación digital completa</div>
+            <div class="banner-features">
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <span>4 Módulos</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <span>Integración Total</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-marker"></span>
+                    <span>Formación Incluida</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

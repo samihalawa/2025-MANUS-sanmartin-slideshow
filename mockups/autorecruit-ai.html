@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoRecruit AI - Reclutamiento Inteligente</title>
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #a78bfa;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --dark: #1e1b4b;
+            --light: #faf5ff;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 50px 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .ai-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+        }
+        
+        .search-section {
+            background: white;
+            padding: 40px 50px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        
+        .search-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f9fafb;
+            border: 3px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 20px 25px;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus-within {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(124,58,237,0.1);
+        }
+        
+        .search-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 1.1rem;
+            outline: none;
+            color: var(--dark);
+        }
+        
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .btn-search {
+            padding: 20px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .btn-search:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(124,58,237,0.4);
+        }
+        
+        .main-content {
+            padding: 40px 50px;
+            background: #fafafa;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .results-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .results-count {
+            color: var(--primary);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--primary);
+            background: var(--light);
+            color: var(--primary);
+        }
+        
+        .candidates-grid {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .candidate-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .candidate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+        
+        .candidate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 25px;
+        }
+        
+        .candidate-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .candidate-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .candidate-details h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .candidate-title {
+            font-size: 1.05rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        
+        .candidate-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+        
+        .match-score {
+            text-align: center;
+        }
+        
+        .score-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+        }
+        
+        .score-value {
+            font-size: 2rem;
+        }
+        
+        .score-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        .candidate-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-tag {
+            padding: 8px 16px;
+            background: var(--light);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .ai-reasoning {
+            background: linear-gradient(135deg, #faf5ff 0%, #fce7f3 100%);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .reasoning-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .reasoning-text {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .candidate-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124,58,237,0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light);
+        }
+        
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>
+                    🤖 AutoRecruit AI
+                    <span class="ai-badge">Powered by AI</span>
+                </h1>
+                <p>Motor de reclutamiento inteligente con búsqueda automatizada y análisis de candidatos mediante IA</p>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Ej: Jefe de Producción, Madrid, 3+ años experiencia en empresas top" value="Jefe de Producción, Madrid, 3+ años experiencia">
+                </div>
+                <button class="btn-search">🚀 Buscar Candidatos</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">47</div>
+                    <div class="stat-label">Candidatos Encontrados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Match Excelente (>90%)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Contactados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Respuestas Recibidas</div>
+                </div>
+            </div>
+            
+            <div class="results-header">
+                <h2 class="results-title">
+                    Mejores Candidatos 
+                    <span class="results-count">(12 resultados)</span>
+                </h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active">🏆 Top Match</button>
+                    <button class="filter-btn">📍 Por Ubicación</button>
+                    <button class="filter-btn">💼 Por Experiencia</button>
+                </div>
+            </div>
+            
+            <div class="candidates-grid">
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">CR</div>
+                            <div class="candidate-details">
+                                <h3>Carlos Ramírez Ortega</h3>
+                                <div class="candidate-title">Jefe de Producción Senior</div>
+                                <div class="candidate-location">
+                                    📍 Madrid, España • 💼 8 años de experiencia
+                                </div>
+                            </div>
+                        </div>
+                        <div class="match-score">
+                            <div class="score-circle">
+                                <div class="score-value">96%</div>
+                                <div class="score-label">MATCH</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="candidate-skills">
+                        <span class="skill-tag">Gestión de Producción</span>
+                        <span class="skill-tag">Lean Manufacturing</span>
+                        <span class="skill-tag">Liderazgo de Equipos</span>
+                        <span class="skill-tag">ISO 9001</span>
+                        <span class="skill-tag">Mejora Continua</span>
+                    </div>
+                    
+                    <div class="ai-reasoning">
+                        <div class="reasoning-title">
+                            <span>🧠</span>
+                            <span>Análisis de IA</span>
+                        </div>
+                        <div class="reasoning-text">
+                            Candidato excepcional con 8 años de experiencia en gestión de producción en empresas líderes del sector construcción. Ha liderado equipos de hasta 50 personas y ha implementado sistemas Lean que mejoraron la eficiencia en un 35%. Experiencia directa en Madrid y conocimiento profundo de normativas españolas.
+                        </div>
+                    </div>
+                    
+                    <div class="candidate-actions">
+                        <button class="btn btn-primary">✉️ Contactar Automáticamente</button>
+                        <button class="btn btn-secondary">👁️ Ver Perfil Completo</button>
+                    </div>
+                </div>
+                
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">LM</div>
+                            <div class="candidate-details">
+                                <h3>Laura Martínez Silva</h3>
+                                <div class="candidate-title">Directora de Operaciones</div>
+                                <div class="candidate-location">
+                                    📍 Madrid, España • 💼 6 años de experiencia
+                                </div>
+                            </div>
+                        </div>
+                        <div class="match-score">
+                            <div class="score-circle">
+                                <div class="score-value">94%</div>
+                                <div class="score-label">MATCH</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="candidate-skills">
+                        <span class="skill-tag">Operaciones Industriales</span>
+                        <span class="skill-tag">Planificación Estratégica</span>
+                        <span class="skill-tag">Gestión de Proyectos</span>
+                        <span class="skill-tag">Six Sigma</span>
+                        <span class="skill-tag">KPIs</span>
+                    </div>
+                    
+                    <div class="ai-reasoning">
+                        <div class="reasoning-title">
+                            <span>🧠</span>
+                            <span>Análisis de IA</span>
+                        </div>
+                        <div class="reasoning-text">
+                            Perfil altamente cualificado con experiencia en dirección de operaciones en empresas de construcción y manufactura. Ha gestionado presupuestos superiores a €5M y ha coordinado múltiples proyectos simultáneos. Certificación Six Sigma Black Belt y MBA en Gestión de Operaciones.
+                        </div>
+                    </div>
+                    
+                    <div class="candidate-actions">
+                        <button class="btn btn-primary">✉️ Contactar Automáticamente</button>
+                        <button class="btn btn-secondary">👁️ Ver Perfil Completo</button>
+                    </div>
+                </div>
+                
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <div class="candidate-info">
+                            <div class="candidate-avatar">JH</div>
+                            <div class="candidate-details">
+                                <h3>Javier Hernández Ruiz</h3>
+                                <div class="candidate-title">Responsable de Producción</div>
+                                <div class="candidate-location">
+                                    📍 Madrid, España • 💼 5 años de experiencia
+                                </div>
+                            </div>
+                        </div>
+                        <div class="match-score">
+                            <div class="score-circle">
+                                <div class="score-value">92%</div>
+                                <div class="score-label">MATCH</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="candidate-skills">
+                        <span class="skill-tag">Control de Producción</span>
+                        <span class="skill-tag">Gestión de Calidad</span>
+                        <span class="skill-tag">Optimización de Procesos</span>
+                        <span class="skill-tag">SAP</span>
+                        <span class="skill-tag">Seguridad Laboral</span>
+                    </div>
+                    
+                    <div class="ai-reasoning">
+                        <div class="reasoning-title">
+                            <span>🧠</span>
+                            <span>Análisis de IA</span>
+                        </div>
+                        <div class="reasoning-text">
+                            Profesional con sólida experiencia en control y optimización de producción en el sector industrial. Ha reducido costes operativos en un 20% mediante implementación de nuevos procesos. Formación técnica especializada y conocimiento avanzado de sistemas ERP (SAP).
+                        </div>
+                    </div>
+                    
+                    <div class="candidate-actions">
+                        <button class="btn btn-primary">✉️ Contactar Automáticamente</button>
+                        <button class="btn btn-secondary">👁️ Ver Perfil Completo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
