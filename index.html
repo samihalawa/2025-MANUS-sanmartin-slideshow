@@ -3,326 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suite San Martín AI - Propuesta</title>
+    <title>Suite San Martín AI - Presentación Completa</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #000;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
         }
-        
-        .slideshow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-        }
-        
-        .slide-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .slide-frame {
-            position: relative;
-            width: 100%;
-            max-width: 100vw;
-            max-height: 100vh;
-            aspect-ratio: 16 / 9;
-        }
-        
-        /* Ensure slide fits within viewport while maintaining aspect ratio */
-        @media (min-aspect-ratio: 16/9) {
-            .slide-frame {
-                height: 100vh;
-                width: auto;
-            }
-        }
-        
-        @media (max-aspect-ratio: 16/9) {
-            .slide-frame {
-                width: 100vw;
-                height: auto;
-            }
-        }
-        
-        .slide-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-        
         .slide {
-            display: none;
-            width: 100%;
-            height: 100%;
+            width: 1280px;
+            min-height: 720px;
+            background: white;
+            margin: 0 auto 40px auto;
+            padding: 40px 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            page-break-after: always;
+            position: relative;
         }
-        
-        .slide.active {
-            display: block;
-        }
-        
-        /* Navigation arrows */
-        .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 1000;
-            transition: background 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .nav-arrow:active {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .nav-arrow.prev {
-            left: 20px;
-        }
-        
-        .nav-arrow.next {
-            right: 20px;
-        }
-        
-        /* Hide arrows on first/last slide */
-        .nav-arrow.hidden {
-            display: none;
-        }
-        
-        /* Slide counter */
-        .slide-counter {
-            position: fixed;
+        .slide-number {
+            position: absolute;
             bottom: 20px;
-            right: 20px;
-            color: rgba(255, 255, 255, 0.6);
+            right: 60px;
+            color: #94a3b8;
             font-size: 14px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 48px;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 42px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        h3 {
+            font-size: 28px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .subtitle {
+            font-size: 24px;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        .badge {
+            display: inline-block;
+            background: #1e3a8a;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .description {
+            font-size: 17px;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .features {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .feature-badge {
+            background: #f1f5f9;
+            color: #1e40af;
             padding: 8px 16px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            border-left: 3px solid #3b82f6;
         }
-        
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .nav-arrow {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-            
-            .nav-arrow.prev {
-                left: 10px;
-            }
-            
-            .nav-arrow.next {
-                right: 10px;
-            }
-            
-            .slide-counter {
-                bottom: 10px;
-                right: 10px;
-                font-size: 12px;
-                padding: 6px 12px;
-            }
+        .feature-badge.highlight {
+            background: #fef3c7;
+            color: #92400e;
+            border-left-color: #f59e0b;
         }
-        
-        /* Keyboard navigation hint */
-        .keyboard-hint {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 6px 12px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
         }
-        
-        @media (max-width: 768px) {
-            .keyboard-hint {
-                display: none;
-            }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #1e3a8a;
+        }
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .stats-box {
+            background: #1e3a8a;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stats-box.dark {
+            background: #0f172a;
+        }
+        .stats-value {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stats-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #1e3a8a;
+            color: white;
+            font-weight: 600;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .mockup-preview {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            border: 2px dashed #cbd5e1;
+        }
+        .divider {
+            width: 150px;
+            height: 4px;
+            background: #1e3a8a;
+            margin: 20px auto;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .guarantee-card {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0ea5e9;
+            margin-bottom: 15px;
+        }
+        .guarantee-card h4 {
+            color: #0c4a6e;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .guarantee-card p {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .contact-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        @media print {
+            body { padding: 0; background: white; }
+            .slide { margin: 0; box-shadow: none; page-break-after: always; }
         }
     </style>
 </head>
 <body>
-    <div class="slideshow-container">
-        <div class="slide-wrapper">
-            <div class="slide-frame">
-                <div class="slide active">
-                    <iframe src="portada.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="resumen_ejecutivo.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="suite_unificada.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="modulo_automanagement.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="modulo_empleados.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="modulo_autorecruit.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="modulo_formacion_ia.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="inversion_formacion.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="plan_implementacion.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="roi_valor.html"></iframe>
-                </div>
-                <div class="slide">
-                    <iframe src="contacto_garantias.html"></iframe>
-                </div>
+
+<!-- SLIDE 1: PORTADA -->
+<div class="slide">
+    <div class="text-center" style="padding-top: 100px;">
+        <h1 style="font-size: 56px; margin-bottom: 30px;">Suite "San Martín AI"</h1>
+        <div class="subtitle" style="font-size: 28px; margin-bottom: 60px;">Transformación Digital de Recursos Humanos</div>
+        
+        <div class="divider"></div>
+        
+        <p style="font-size: 18px; color: #64748b; margin: 40px 0 20px 0; text-transform: uppercase; letter-spacing: 2px;">PROPUESTA PRESENTADA A</p>
+        <h2 style="font-size: 44px; margin-bottom: 80px;">Construcciones San Martín S.A.</h2>
+        
+        <p style="font-size: 22px; color: #475569; margin-bottom: 10px;">Octubre 2025</p>
+        <p style="font-size: 16px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">PROPUESTA TÉCNICA Y ECONÓMICA</p>
+    </div>
+    <div class="slide-number">1 / 11</div>
+</div>
+
+<!-- SLIDE 2: RESUMEN EJECUTIVO -->
+<div class="slide">
+    <h2 class="text-center" style="margin-bottom: 40px;">Resumen Ejecutivo</h2>
+    
+    <div class="grid-2">
+        <div class="card">
+            <h3>SITUACIÓN ACTUAL</h3>
+            <p>Los procesos manuales de gestión de recursos humanos generan ineficiencias operativas y errores en el procesamiento de nóminas y administración de personal.</p>
+        </div>
+        <div class="card">
+            <h3>SOLUCIÓN PROPUESTA</h3>
+            <p>Suite "San Martín AI" - Plataforma unificada que automatiza la gestión integral de recursos humanos mediante inteligencia artificial.</p>
+        </div>
+    </div>
+    
+    <div class="card" style="margin-bottom: 30px;">
+        <h3>BENEFICIOS PRINCIPALES</h3>
+        <ul>
+            <li>Reducción del 85% en tiempo administrativo</li>
+            <li>Eliminación de errores en procesamiento de nóminas</li>
+            <li>Aceleración 5x en procesos de reclutamiento mediante IA</li>
+            <li>Portal de autoservicio para empleados</li>
+        </ul>
+    </div>
+    
+    <div class="grid-2">
+        <div class="stats-box">
+            <div class="stats-value">95.000 €</div>
+            <div class="stats-label">INVERSIÓN TOTAL</div>
+        </div>
+        <div class="stats-box dark">
+            <div class="stats-value">181%</div>
+            <div class="stats-label">ROI PROYECTADO A 3 AÑOS</div>
+        </div>
+    </div>
+    
+    <div class="slide-number">2 / 11</div>
+</div>
+
+<!-- SLIDE 3: SUITE UNIFICADA -->
+<div class="slide">
+    <h2 class="text-center" style="margin-bottom: 10px;">Suite San Martín AI: Plataforma Unificada</h2>
+    <p class="text-center subtitle">Solución integral con capacitación en IA y automatización</p>
+    
+    <div class="grid-4">
+        <div class="card">
+            <div class="badge" style="margin-bottom: 10px;">MÓDULO I</div>
+            <h3>HR AutoManagement</h3>
+            <p>Automatización de partes de trabajo, procesamiento de nóminas y comunicaciones programadas</p>
+        </div>
+        
+        <div class="card">
+            <div class="badge" style="margin-bottom: 10px;">MÓDULO II</div>
+            <h3>Employees Platform</h3>
+            <p>Portal de autoservicio para gestión de vacaciones, ausencias y documentación personal</p>
+        </div>
+        
+        <div class="card">
+            <div class="badge" style="margin-bottom: 10px;">MÓDULO III</div>
+            <h3>AutoRecruit AI</h3>
+            <p>Motor de adquisición de talento con búsqueda inteligente y contacto automatizado</p>
+        </div>
+        
+        <div class="card">
+            <div class="badge" style="margin-bottom: 10px;">MÓDULO IV</div>
+            <h3>Formación en IA y Automatización</h3>
+            <p>Programa presencial de 30 horas en Madrid sobre automatización de procesos e IA aplicada</p>
+        </div>
+    </div>
+    
+    <div style="background: #1e3a8a; color: white; padding: 20px; border-radius: 10px; text-align: center; margin-top: 30px;">
+        <p style="font-size: 18px; font-weight: 600;">Plataforma integral con capacitación para transformación digital completa</p>
+        <div style="display: flex; justify-content: center; gap: 40px; margin-top: 15px;">
+            <span style="font-size: 16px;">• 4 Módulos</span>
+            <span style="font-size: 16px;">• Integración Total</span>
+            <span style="font-size: 16px;">• Formación Incluida</span>
+        </div>
+    </div>
+    
+    <div class="slide-number">3 / 11</div>
+</div>
+
+<!-- SLIDE 4: MÓDULO I -->
+<div class="slide">
+    <div class="badge">MÓDULO I</div>
+    <h2>HR AutoManagement</h2>
+    <div class="subtitle">Automatización de Partes de Trabajo y Nóminas</div>
+    
+    <div class="description">
+        Convierte fichajes en archivos listos para nóminas, aplicando reglas laborales y detectando excepciones.
+    </div>
+    
+    <div class="features">
+        <span class="feature-badge">Ingesta automática</span>
+        <span class="feature-badge">Reglas laborales</span>
+        <span class="feature-badge">Detección de excepciones</span>
+        <span class="feature-badge">Procesamiento automatizado</span>
+        <span class="feature-badge highlight">Cumpleaños automatizados</span>
+    </div>
+    
+    <div class="mockup-preview" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+        <div>
+            <p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Vista del Dashboard de Gestión Automática de RRHH</p>
+            <p style="font-size: 14px;">157 Empleados | 100% Nóminas OK | 3 Alertas</p>
+            <p style="font-size: 14px; margin-top: 10px;">Procesamiento Automático • Partes de Trabajo • Nóminas Octubre • Cumpleaños Hoy</p>
+        </div>
+    </div>
+    
+    <div class="slide-number">4 / 11</div>
+</div>
+
+<!-- SLIDE 5: MÓDULO II -->
+<div class="slide">
+    <div class="badge">MÓDULO II</div>
+    <h2>Employees Platform</h2>
+    <div class="subtitle">Portal de Autoservicio para Empleados</div>
+    
+    <div class="description">
+        Portal centralizado para gestionar vacaciones, ausencias y documentación personal.
+    </div>
+    
+    <div class="features">
+        <span class="feature-badge">Solicitud de vacaciones</span>
+        <span class="feature-badge">Gestión de ausencias</span>
+        <span class="feature-badge">Documentos personales</span>
+        <span class="feature-badge">Acceso a nóminas</span>
+    </div>
+    
+    <div class="mockup-preview" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+        <div>
+            <p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Vista del Portal del Empleado</p>
+            <p style="font-size: 14px;">18 Días Vacaciones | 2 Ausencias | 1 Pendiente</p>
+            <p style="font-size: 14px; margin-top: 10px;">Calendario - Octubre 2025 con días de vacaciones destacados</p>
+        </div>
+    </div>
+    
+    <div class="slide-number">5 / 11</div>
+</div>
+
+<!-- SLIDE 6: MÓDULO III -->
+<div class="slide">
+    <div class="badge">MÓDULO III</div>
+    <h2>AutoRecruit AI <span style="background: #000; color: white; padding: 4px 12px; border-radius: 4px; font-size: 14px; margin-left: 10px;">IA</span></h2>
+    <div class="subtitle">Motor de Reclutamiento Inteligente</div>
+    
+    <div class="description">
+        Búsqueda inteligente de candidatos, escaneo de LinkedIn y contacto automatizado. Reduce tiempo de búsqueda 80%.
+    </div>
+    
+    <div class="features">
+        <span class="feature-badge">Búsqueda por lenguaje natural</span>
+        <span class="feature-badge">Escaneo LinkedIn</span>
+        <span class="feature-badge">Análisis de perfiles</span>
+        <span class="feature-badge">Contacto automatizado</span>
+    </div>
+    
+    <div class="mockup-preview" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+        <div>
+            <p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Vista del Motor de Reclutamiento IA</p>
+            <p style="font-size: 14px;">47 Candidatos | 12 Match Alto | 8 Contactados | 3 Respuestas</p>
+            <p style="font-size: 14px; margin-top: 10px;">Búsqueda: Jefe de Producción, Madrid, 3+ años</p>
+            <p style="font-size: 13px; margin-top: 8px;">Mejores candidatos con % de match: 96%, 94%, 92%</p>
+        </div>
+    </div>
+    
+    <div class="slide-number">6 / 11</div>
+</div>
+
+<!-- SLIDE 7: MÓDULO IV -->
+<div class="slide">
+    <div class="badge">MÓDULO IV</div>
+    <h2>Formación en IA y Automatización</h2>
+    <div class="subtitle">Programa Presencial de 30 Horas en Madrid</div>
+    
+    <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; flex: 1; text-align: center; border-left: 4px solid #0ea5e9;">
+            <div style="font-size: 32px; font-weight: bold; color: #0c4a6e;">30h</div>
+            <div style="font-size: 13px; color: #64748b;">Formación Presencial</div>
+        </div>
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; flex: 1; text-align: center; border-left: 4px solid #0ea5e9;">
+            <div style="font-size: 32px; font-weight: bold; color: #0c4a6e;">3</div>
+            <div style="font-size: 13px; color: #64748b;">Módulos Especializados</div>
+        </div>
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; flex: 1; text-align: center; border-left: 4px solid #0ea5e9;">
+            <div style="font-size: 32px; font-weight: bold; color: #0c4a6e;">5</div>
+            <div style="font-size: 13px; color: #64748b;">Días Intensivos</div>
+        </div>
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; flex: 1; text-align: center; border-left: 4px solid #0ea5e9;">
+            <div style="font-size: 32px; font-weight: bold; color: #0c4a6e;">80%</div>
+            <div style="font-size: 13px; color: #64748b;">Práctica</div>
+        </div>
+    </div>
+    
+    <h3 style="font-size: 20px; margin-bottom: 15px;">Contenido del Programa</h3>
+    
+    <div class="grid-2" style="gap: 20px;">
+        <div>
+            <div class="card" style="margin-bottom: 15px;">
+                <h4 style="font-size: 16px; color: #1e3a8a; margin-bottom: 8px;">1. IA en Excel (12 horas)</h4>
+                <p style="font-size: 14px; color: #475569;">Introducción a IA • Power Query con IA • Análisis Predictivo • Automatización de Reportes • ChatGPT + Excel</p>
+            </div>
+            
+            <div class="card" style="margin-bottom: 15px;">
+                <h4 style="font-size: 16px; color: #1e3a8a; margin-bottom: 8px;">2. Automatización de Procesos (12 horas)</h4>
+                <p style="font-size: 14px; color: #475569;">Fundamentos • Power Automate • Automatización en RRHH (cumpleaños y aniversarios) • Integración de Sistemas • RPA Conceptos</p>
+            </div>
+        </div>
+        
+        <div>
+            <div class="card" style="margin-bottom: 15px;">
+                <h4 style="font-size: 16px; color: #1e3a8a; margin-bottom: 8px;">3. Gestión de Proyectos de Automatización (6 horas)</h4>
+                <p style="font-size: 14px; color: #475569;">Identificación de Oportunidades • Especificación de Requerimientos • Selección de Proveedores • Gestión de Implementación</p>
+            </div>
+            
+            <div class="card">
+                <h4 style="font-size: 16px; color: #1e3a8a; margin-bottom: 8px;">Metodología</h4>
+                <p style="font-size: 14px; color: #475569;">Oficinas CSM Madrid • Casos prácticos reales • Material completo • Certificado • 30 días soporte post-formación</p>
             </div>
         </div>
     </div>
     
-    <button class="nav-arrow prev" id="prevBtn">‹</button>
-    <button class="nav-arrow next" id="nextBtn">›</button>
+    <div class="slide-number">7 / 11</div>
+</div>
+
+<!-- SLIDE 8: ESTRUCTURA DE INVERSIÓN -->
+<div class="slide">
+    <h2 class="text-center" style="margin-bottom: 40px;">Estructura de Inversión</h2>
     
-    <div class="slide-counter">
-        <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+    <table>
+        <thead>
+            <tr>
+                <th>Módulo</th>
+                <th>Descripción</th>
+                <th style="text-align: right;">Precio Individual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Módulo I</strong></td>
+                <td>HR AutoManagement</td>
+                <td style="text-align: right;">30.000 €</td>
+            </tr>
+            <tr>
+                <td><strong>Módulo II</strong></td>
+                <td>Employees Platform</td>
+                <td style="text-align: right;">40.000 €</td>
+            </tr>
+            <tr>
+                <td><strong>Módulo III</strong></td>
+                <td>AutoRecruit AI</td>
+                <td style="text-align: right;">50.000 €</td>
+            </tr>
+            <tr>
+                <td><strong>Módulo IV</strong></td>
+                <td>Formación en IA y Automatización (30h)</td>
+                <td style="text-align: right;">7.000 €</td>
+            </tr>
+            <tr style="background: #f8fafc;">
+                <td colspan="2"><strong>TOTAL INDIVIDUAL</strong></td>
+                <td style="text-align: right;"><strong>127.000 €</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div style="background: #10b981; color: white; padding: 30px; border-radius: 10px; text-align: center; margin-top: 30px;">
+        <p style="font-size: 18px; margin-bottom: 15px; font-weight: 600;">SUITE UNIFICADA (4 MÓDULOS)</p>
+        <div style="font-size: 56px; font-weight: bold; margin-bottom: 10px;">95.000 €</div>
+        <p style="font-size: 20px; opacity: 0.95;">Ahorro de 32.000 € (25% de descuento)</p>
     </div>
     
-    <div class="keyboard-hint">Use ← → arrows or click to navigate</div>
+    <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #f59e0b;">
+        <p style="color: #92400e; font-size: 15px;"><strong>Incluye:</strong> Soporte técnico 12 meses • Sesiones de actualización a 3 y 6 meses • Material de formación completo • Certificados</p>
+    </div>
     
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const currentSlideSpan = document.getElementById('currentSlide');
-        const totalSlidesSpan = document.getElementById('totalSlides');
+    <div class="slide-number">8 / 11</div>
+</div>
+
+<!-- SLIDE 9: PLAN DE IMPLEMENTACIÓN -->
+<div class="slide">
+    <h2 class="text-center" style="margin-bottom: 40px;">Plan de Implementación</h2>
+    
+    <div class="grid-2" style="gap: 30px;">
+        <div style="background: #f8fafc; padding: 30px; border-radius: 10px; border-left: 4px solid #1e3a8a; text-align: center;">
+            <div class="badge" style="background: #1e3a8a; font-size: 14px; margin-bottom: 20px;">ESTÁNDAR</div>
+            <div style="font-size: 48px; font-weight: bold; color: #1e3a8a; margin-bottom: 15px;">80 días</div>
+            <p style="font-size: 16px; color: #64748b; margin-bottom: 20px;">Duración naturales</p>
+            <p style="font-size: 18px; font-weight: 600; color: #1e3a8a;">Incluido en la inversión</p>
+        </div>
         
-        totalSlidesSpan.textContent = totalSlides;
+        <div style="background: #f0fdf4; padding: 30px; border-radius: 10px; border-left: 4px solid #10b981; text-align: center;">
+            <div class="badge" style="background: #10b981; font-size: 14px; margin-bottom: 20px;">EXPRESS</div>
+            <div style="font-size: 48px; font-weight: bold; color: #10b981; margin-bottom: 15px;">40 días</div>
+            <p style="font-size: 16px; color: #64748b; margin-bottom: 20px;">50% más rápido</p>
+            <p style="font-size: 18px; font-weight: 600; color: #10b981;">+4.000 €</p>
+        </div>
+    </div>
+    
+    <div style="background: #f8fafc; padding: 25px; border-radius: 10px; margin-top: 30px;">
+        <p style="font-size: 15px; color: #475569; line-height: 1.8; text-align: center;">
+            <strong>Nota:</strong> El Pack Express incluye recursos adicionales dedicados y priorización del proyecto para completar la implementación en la mitad del tiempo estándar. Ambas opciones incluyen análisis, desarrollo, formación, implementación y soporte continuo.
+        </p>
+    </div>
+    
+    <div class="slide-number">9 / 11</div>
+</div>
+
+<!-- SLIDE 10: ROI -->
+<div class="slide">
+    <h2 class="text-center" style="margin-bottom: 40px;">Retorno de la Inversión</h2>
+    
+    <table style="margin-bottom: 30px;">
+        <thead>
+            <tr>
+                <th>Categoría</th>
+                <th style="text-align: right;">Ahorro Anual Proyectado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>⏱️ Tiempo Administrativo</td>
+                <td style="text-align: right;">45.000 €</td>
+            </tr>
+            <tr>
+                <td>🎯 Eficiencia de Reclutamiento</td>
+                <td style="text-align: right;">28.000 €</td>
+            </tr>
+            <tr>
+                <td>✓ Reducción de Errores</td>
+                <td style="text-align: right;">16.000 €</td>
+            </tr>
+            <tr style="background: #f0fdf4;">
+                <td><strong>TOTAL AHORRO ANUAL</strong></td>
+                <td style="text-align: right;"><strong style="color: #10b981;">89.000 €</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="grid-2" style="gap: 30px;">
+        <div class="stats-box" style="background: #10b981;">
+            <div style="font-size: 18px; margin-bottom: 10px;">💰 Ahorro Anual</div>
+            <div class="stats-value">89.000 €</div>
+        </div>
         
-        function showSlide(n) {
-            if (n >= totalSlides) {
-                currentSlide = totalSlides - 1;
-            } else if (n < 0) {
-                currentSlide = 0;
-            } else {
-                currentSlide = n;
-            }
-            
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                }
-            });
-            
-            currentSlideSpan.textContent = currentSlide + 1;
-            
-            // Hide/show navigation arrows
-            if (currentSlide === 0) {
-                prevBtn.classList.add('hidden');
-            } else {
-                prevBtn.classList.remove('hidden');
-            }
-            
-            if (currentSlide === totalSlides - 1) {
-                nextBtn.classList.add('hidden');
-            } else {
-                nextBtn.classList.remove('hidden');
-            }
-        }
+        <div class="stats-box" style="background: #0ea5e9;">
+            <div style="font-size: 18px; margin-bottom: 10px;">📅 Período de Recuperación</div>
+            <div class="stats-value">13 meses</div>
+        </div>
+    </div>
+    
+    <div class="stats-box dark" style="margin-top: 30px;">
+        <div style="font-size: 18px; margin-bottom: 10px;">📈 ROI a 3 Años</div>
+        <div class="stats-value">181%</div>
+    </div>
+    
+    <div class="slide-number">10 / 11</div>
+</div>
+
+<!-- SLIDE 11: GARANTÍAS -->
+<div class="slide">
+    <h2 class="text-center" style="margin-bottom: 40px;">Garantías y Condiciones</h2>
+    
+    <div class="guarantee-card">
+        <h4>🛡️ Garantía de Satisfacción Total</h4>
+        <p>Reembolso completo de la inversión si la solución no cumple con los requisitos funcionales acordados o no opera según lo especificado.</p>
+    </div>
+    
+    <div class="guarantee-card">
+        <h4>🔧 Soporte Continuo 12 Meses</h4>
+        <p>Corrección de errores sin costo adicional, optimización de rendimiento y ajustes funcionales durante 12 meses desde la implementación.</p>
+    </div>
+    
+    <div class="guarantee-card">
+        <h4>⚡ Precio Prioritario para Nuevas Funcionalidades</h4>
+        <p>Acceso a tarifas preferenciales reducidas para el desarrollo e implementación de nuevas funcionalidades o módulos adicionales.</p>
+    </div>
+    
+    <div class="contact-info">
+        <h4 style="font-size: 16px; color: #1e3a8a; margin-bottom: 15px;">Información de Contacto</h4>
+        <p style="margin-bottom: 8px;"><strong>Proveedor:</strong> Agents AI Limited</p>
+        <p style="margin-bottom: 8px;">27 Old Gloucester Street, London WC1N 3AX, United Kingdom</p>
+        <p style="margin-bottom: 20px;"><strong>Email:</strong> sami@agentsai.ltd</p>
         
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-        
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-        
-        // Event listeners
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
-        });
-        
-        // Touch swipe support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) {
-                nextSlide();
-            }
-            if (touchEndX > touchStartX + 50) {
-                prevSlide();
-            }
-        }
-        
-        // Initialize
-        showSlide(0);
-    </script>
+        <p style="margin-bottom: 5px;"><strong>Validez de la propuesta:</strong> 30 días desde la fecha de emisión</p>
+        <p><strong>Confidencialidad:</strong> Documento confidencial destinado exclusivamente a Construcciones San Martín S.A.</p>
+    </div>
+    
+    <div class="slide-number">11 / 11</div>
+</div>
+
 </body>
 </html>
 
